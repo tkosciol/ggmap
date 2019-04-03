@@ -1,7 +1,6 @@
 import pandas as pd
 import biom
 from biom.util import biom_open
-from mpl_toolkits.basemap import Basemap
 from itertools import repeat, chain
 import numpy as np
 import matplotlib.patches as mpatches
@@ -292,6 +291,8 @@ def drawMap(points, basemap=None, ax=None, no_legend=False,
     ValueError if provided list of dicts do not contain keys 'coords' or
     coords DataFrame is lacking columns 'latitude' or 'longitude'.
     """
+    from mpl_toolkits.basemap import Basemap
+
     if ax is None:
         fig, ax = plt.subplots(1, 1)
 
