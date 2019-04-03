@@ -544,6 +544,7 @@ def plotTaxonomy(file_otutable,
                  print_sample_labels=False,
                  sample_label_column=None,
                  print_meanrelabunances=False,
+                 normalize_otutable=True,
                  minreadnr=50,
                  plottaxa=None,
                  plotTopXtaxa=None,
@@ -581,6 +582,9 @@ def plotTaxonomy(file_otutable,
     print_meanrelabunances : Bool
         Default: False.
         If True, print mean relative abundance of taxa in legend.
+    normalize_otutable : Bool
+        Default: True.
+        If False, `file_otutable` will be takes as-is, without any normalization
     minreadnr : int
         min number of reads a taxon need to have to be plotted
     plotTopXtaxa : int
@@ -665,7 +669,8 @@ def plotTaxonomy(file_otutable,
                                     minreadnr)].index
 
     # normalize to 1 in each sample
-    rank_counts /= rank_counts.sum(axis=0)
+    if normalize_otutable:
+        rank_counts /= rank_counts.sum(axis=0)
 
     # filter low abundant taxa
     if (grayscale is False) & (len(lowAbundandTaxa) > 0):
